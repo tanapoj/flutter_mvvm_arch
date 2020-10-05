@@ -66,7 +66,8 @@ class _MyMainView extends ui.View<MyHomeViewController, _MyMainViewModel> {
 class _MyMainViewModel extends ui.ViewModel {
   final LiveData<int> counter;
 
-  _MyMainViewModel(LifeCycleObserver observer) : counter = LiveData(observer, initValue: 1);
+  _MyMainViewModel(LifeCycleObserver observer)
+      : counter = LiveData(observer, initValue: 1);
 
   void incrementCounter() {
     counter.value++;

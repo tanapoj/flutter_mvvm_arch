@@ -1,15 +1,15 @@
 name: mvvm_arch_example
-version: 1.0.0
+version: 1.0.6
 author: Tanapoj Chaivanichanan <tanapoj@centrilliontech.co.th>
 homepage: https://github.com/nartra/flutter_mvvm_arch
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  mvvm_arch: 1.0.0
+  mvvm_arch: 1.0.6
 
 dev_dependencies:
   flutter_test:

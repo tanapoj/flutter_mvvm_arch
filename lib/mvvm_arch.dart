@@ -4,12 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
 import 'commons/bloc.dart' as bloc;
-import 'commons/fp.dart';
 
 import 'commons/lifecycle.dart';
 
-abstract class BaseStatefulWidget extends StatefulWidget {
-  const BaseStatefulWidget({Key key}) : super(key: key);
+/// Base Widget Class
+abstract class _BaseStatefulWidget extends StatefulWidget {
+  const _BaseStatefulWidget({Key key}) : super(key: key);
 
   @override
   State createState() => getView();
@@ -17,25 +17,28 @@ abstract class BaseStatefulWidget extends StatefulWidget {
   View getView();
 }
 
-abstract class BaseState<T extends BaseStatefulWidget> extends State<T> {}
-
-abstract class ViewControllerWidget extends BaseStatefulWidget {
+/// ViewController
+abstract class ViewControllerWidget extends _BaseStatefulWidget {
   const ViewControllerWidget({Key key}) : super(key: key);
 }
 
-abstract class FragmentWidget extends BaseStatefulWidget {
+/// Fragment
+abstract class FragmentWidget extends ViewControllerWidget {
   const FragmentWidget({Key key}) : super(key: key);
 }
 
+/// ViewModel
 abstract class ViewModel {
   String get name => '{{sys.ui.ViewModel}}';
 
   void dispose() {}
 }
 
+/// Foo View
 class EmptyView extends Container {}
 
-abstract class View<Base extends BaseStatefulWidget, VM extends ViewModel> extends State<Base>
+/// View
+abstract class View<Base extends _BaseStatefulWidget, VM extends ViewModel> extends State<Base>
     implements LifeCycleObserver {
   final List<LiveData> _liveData = [];
 
@@ -65,28 +68,6 @@ abstract class View<Base extends BaseStatefulWidget, VM extends ViewModel> exten
     @required Widget Function(BuildContext context, T value) builder,
   }) {
     return bloc.$watch($viewModel, builder: builder);
-  }
-
-  Widget $watchMerge<T>(
-    Map<Symbol, LiveData<T>> $viewModel, {
-    @required Widget Function(BuildContext context, Symbol symbol, T value) builder,
-  }) {
-    return bloc.$watchMerge($viewModel, builder: builder);
-  }
-
-  Widget $watchZip<T>(
-    Map<Symbol, LiveData<T>> map, {
-    @required Widget Function(BuildContext context, Memorize memorize) builder,
-  }) {
-    return bloc.$watchZip(map, builder: builder);
-  }
-
-  Widget $ifNot<T extends bool>(
-    LiveData<T> $viewModel, {
-    bool Function(T) predicate,
-    @required Widget Function(BuildContext context, T value) builder,
-  }) {
-    return bloc.$if($viewModel, predicate: predicate, builder: builder);
   }
 
   Widget $if<T extends bool>(

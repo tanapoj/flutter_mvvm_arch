@@ -1,11 +1,11 @@
 name: mvvm_arch
 description: Flutter MVVM Architecture, create MVVM Pattern to your project structure. Providing Controller-View-ViewModel with LiveData
-version: 1.0.0
+version: 1.0.6
 author: Tanapoj Chaivanichanan <tanapoj@centrilliontech.co.th>
 homepage: https://github.com/nartra/flutter_mvvm_arch
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
   flutter: '>=1.12.1'
 
 dependencies:
